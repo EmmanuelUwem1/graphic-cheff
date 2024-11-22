@@ -230,6 +230,7 @@ a {
   border: transparent !important;
   border-style: solid !important;
   border-width: 0.0001px !important;
+  transition: none !important;
 }
 /* Ipad mini */
 @media (min-width: 768px) and (max-width: 769px){
@@ -245,4 +246,7 @@ a {
     width: 90svw !important;
     right: -10svw;
   }
+}
+.textOverflow{
+  text-overflow: ellipsis !important;
 }
