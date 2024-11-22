@@ -7,11 +7,14 @@
   --background: HSLA(241, 100%, 7%, 0.79);
   --foreground: #171717;
 }
+a{
+  cursor: pointer !important;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* --background: #0a0a0a; */
-    --mb-background: #000018d3;
+    /* --mb-background: #000018d3; */
     --foreground: #ededed;
   }
 }
@@ -109,6 +112,9 @@
   .nav a::before {
     display: none;
   }
+  nav a.active{
+    color: #2e2d46;
+  }
   .close-icon {
     display: flex;
     /* border: 2px solid red; */
@@ -181,7 +187,7 @@ body {
     transform: scaleX(0);
     transform-origin: left;
   }
-  nav a:hover::before {
+  nav a:hover::before, nav a.active::before {
     transform: scaleX(1);
   }
 }

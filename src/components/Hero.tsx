@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -19,8 +20,8 @@ function Hero() {
           Let's collaborate to bring your vision to life. Explore my portfolio
           now.`}
         </p>
-        <a
-          href="#"
+        <Link
+          href="Portfolio"
           className="portfolio flex items-center mt-2 md:mt-6 gap-1 w-fit text-left text-xl justify-start"
         >
           Portfolio{" "}
@@ -36,7 +37,7 @@ function Hero() {
               fill="white"
             />
           </svg>
-        </a>
+        </Link>
       </div>
       <div className="hero-image flex relative bottom-[-2rem] right-[-4rem] lg:right-[-6rem] md:right-[-10rem] items-start justify-end  lg:w-[75%] md:w-full h-full overflow-hidden  sm:z-10">
         <Image

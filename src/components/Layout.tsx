@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import LinkTree from "./LinkTree";
 import Link from "next/link";
@@ -9,7 +10,10 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [IsOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const currentPath = router.asPath;
+  const [IsOpen, setIsOpen] = useState<boolean>(false);
+
 
   function OpenNav(event: React.MouseEvent<SVGSVGElement>) {
         event.stopPropagation();
@@ -21,7 +25,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
   const menuRef = useRef<HTMLDivElement>(null);
   
- 
+  function HandleCLickLink(state :boolean) {
+    setIsOpen(state);
+  
+ }
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -33,6 +40,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Portfolio", href: "/Portfolio" },
+    { name: "About Me", href: "/About" },
+    { name: "Contact", href: "/Contact" },
+    { name: "Resume/CV", href: "/Resume" },
+    { name: "Testimonials", href: "/Testimonials" },
+  ];
 
   return (
     <div>
@@ -55,11 +71,14 @@ Step into the creative kitchen of Graphic Cheff, where design meets innovation. 
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <header className="flex h-16 py-2 px-6 flex-row justify-between md:px-8 lg:px-16 items-center md:h-20 lg:h-24 w-full bg-transparent md:bg-[#FFFFFF36]">
-        <div className="logo text-white text-xl md:text-2xl font-semibold">
+        <Link
+          href="/"
+          className="logo text-white text-xl md:text-2xl font-semibold"
+        >
           Graphic Cheff
-        </div>
+        </Link>
         <nav
-        ref={menuRef}        
+          ref={menuRef}
           className={`${
             IsOpen ? "open pointer-events-auto" : "pointer-events-none"
           } sm:open pointer-events-auto`}
@@ -88,18 +107,17 @@ Step into the creative kitchen of Graphic Cheff, where design meets innovation. 
               stroke-linejoin="round"
             />
           </svg>
-          <Link href="/">Home</Link>
-          <Link href="/Portfolio">Portfolio</Link>
-          <Link href="/about">About Me</Link>
-          <Link href="/about" className="sm:hidden">
-            Contact
-          </Link>
-          <Link href="/about" className="sm:hidden">
-            Resume/CV
-          </Link>
-          <Link href="/about" className="sm:hidden">
-            Testimnoials
-          </Link>
+
+          {navLinks.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className={(index > 2 ? "sm:hidden" : "" )+(currentPath==link.href ? "active" : "")}
+              onClick={()=>HandleCLickLink(false)}
+            >
+              {link.name}
+            </Link>
+          ))}
         </nav>
         <svg
           className={`${
@@ -119,6 +137,7 @@ Step into the creative kitchen of Graphic Cheff, where design meets innovation. 
       </header>
 
       <main className="lg:pl-24 md:pl-20 lg:h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)] flex w-full">
+  
         <LinkTree />
         {children}
       </main>

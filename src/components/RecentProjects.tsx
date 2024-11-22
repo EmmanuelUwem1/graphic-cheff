@@ -3,6 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+// import projects data from projects.js
+import projects from "./projects";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,17 +14,11 @@ import "swiper/css";
 // import required modules
 import { Autoplay, Mousewheel } from "swiper/modules";
 
-const projects = [
-  { title: `project 1`, imagesrc: `/Recent 1.png`, page: `#` },
-  { title: `project 2`, imagesrc: `/Recent 2.png`, page: `#` },
-  { title: `project 3`, imagesrc: `/Recent 3.png`, page: `#` },
-  { title: `project 4`, imagesrc: `/Recent 4.png`, page: `#` },
-  { title: `project 5`, imagesrc: `/Recent 5.png`, page: `#` },
-];
-
 function RecentProjects() {
   const [width, setWidth] = useState(0);
   const breakpoint = 768;
+
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -40,7 +36,7 @@ function RecentProjects() {
 
   if (width > breakpoint) {
     return (
-      <div className="flex relative flex-col items-start justify-center gap-0 lg:h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)] w-72">
+      <div className="flex relative flex-col items-start justify-center gap-0 lg:h-[calc(100svh-6rem)] md:h-[calc(100svh-5rem)] w-72 transition-none">
         <Swiper
           direction={"vertical"}
           slidesPerView={3}
@@ -52,7 +48,7 @@ function RecentProjects() {
             disableOnInteraction: false,
           }}
           modules={[Autoplay, Mousewheel]}
-          className="mySwiper"
+          
         >
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="w-72 ">
@@ -75,7 +71,7 @@ function RecentProjects() {
     );
   }
   return (
-    <div className="flex relative w-[calc(100svw-4rem)] gap-4 h-[calc(40svh+2rem)] pr-4 pb-4 ml-auto ">
+    <div className="flex relative w-[calc(100svw-4rem)] gap-4 h-[calc(40svh+2rem)] pr-4 pb-4 ml-auto transition-none">
       <div className="flex flex-col gap-4 relative w-1/2">
         <Link
           href={projects[0].title}
