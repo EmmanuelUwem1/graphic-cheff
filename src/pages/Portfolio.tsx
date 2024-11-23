@@ -4,6 +4,7 @@ import Link from "next/link";
 import Loading from "@/components/Loading";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import {motion} from "framer-motion";
 const firstProject = projects[0];
 const secondProject = projects[1];
 const thirdProject = projects[2];
@@ -34,7 +35,13 @@ function About() {
   if (width < breakpoint) {
     return (
       // return this for mobile and small screen
-      <div className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-col gap-4 flex pb-4">
+      <motion.div
+        initial={{ opacity: 0}}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0}}
+        transition={{ duration: 1 }}
+        className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-col gap-4 flex pb-4"
+      >
         <div className="flex gap-4 h-[72%] w-full">
           <div className="flex flex-col gap-4 w-1/2">
             <Link
@@ -101,12 +108,18 @@ function About() {
             layout="fill"
           ></Image>
         </Link>
-      </div>
+      </motion.div>
     );
   }
   return (
     // return this for large screen
-    <div className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-row gap-4 flex pb-4">
+    <motion.div
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0}}
+      transition={{duration:1}}
+      className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-row gap-4 flex pb-4"
+    >
       <div className="flex flex-col gap-4 w-2/3">
         <div className="h-[60%] flex gap-4 w-full">
           <Link
@@ -175,7 +188,7 @@ function About() {
           ></Image>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

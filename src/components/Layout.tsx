@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
+// import { motion } from "framer-motion";
 import Head from "next/head";
 import LinkTree from "./LinkTree";
 import Link from "next/link";

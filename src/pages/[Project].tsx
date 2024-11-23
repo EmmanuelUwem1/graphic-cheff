@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Loading from "@/components/Loading.tsx";
+import {motion} from 'framer-motion'
 
 function DynamicPage() {
   const router = useRouter();
@@ -27,7 +28,13 @@ function DynamicPage() {
     );
   }
   return (
-    <div className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] ">
+    <motion.div
+      initial={{ opacity: 0}}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0}}
+      transition={{ duration: 1 }}
+      className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] "
+    >
       <div className="flex items-center justify-center w-full bg-[#D9D9D9] h-[40%] rounded-xl md:h-[60%] md:w-5/12 overflow-hidden relative">
         <Image
           src={project.imagesrc}
@@ -47,7 +54,7 @@ function DynamicPage() {
           </Link>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

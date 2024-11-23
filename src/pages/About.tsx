@@ -1,9 +1,14 @@
 import React from 'react'
 import Image from "next/image";
+import {motion} from 'framer-motion'
 
 function About() {
   return (
-    <div className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-col gap-0 flex overflow-hidden">
+    <motion.div
+    initial={{ opacity: 0}}
+      animate={{ opacity: 1}}
+      exit={{ opacity: 0}}
+      transition={{duration:1}}  className="h-[100svh] w-full bg-[#2E2D46] pt-20 px-6 md:pt-32 md:pl-32 absolute left-0 z-[10] flex-col gap-0 flex overflow-hidden">
       <div className="flex items-center justify-center h-[36svh] sm:overflow-visible relative overflow-hidden ">
         <Image
           src="/portrait-man-sweater-posing 1.png"
@@ -36,7 +41,7 @@ function About() {
           authenticity. Welcome to a world where design meets identity.`}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
