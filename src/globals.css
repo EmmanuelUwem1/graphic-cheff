@@ -5,19 +5,15 @@
 
 :root {
   --background: HSLA(241, 100%, 7%, 0.79);
-  --foreground: #171717;
+ --foreground: #ededed;
 }
 a{
   cursor: pointer !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #0a0a0a; */
-    /* --mb-background: #000018d3; */
-    --foreground: #ededed;
-  }
-}
+
+ 
+
 @media (min-width: 768px) {
   .small {
     font-family: Poppins;
